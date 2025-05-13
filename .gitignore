@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env
+
+# Package manager files
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Logs and databases
+*.log
+*.sqlite3
+*.db
+
+# Pytest cache
+.cache
+*.pytest_cache/
+
+# Jupyter notebooks
+.ipynb_checkpoints
+
+# VS Code settings
+.vscode/
+
+# Docker-specific ignores
+docker-compose.override.yml
+docker-compose.override.dev.yml
+*.dockerfile
+*.dockertags
+*.img
+*.tar
+*.bak
+
+# Generated API documentation
+docs/
+site/
+
+# FastAPI specific
+*.swagger.json
+*.redoc.html
