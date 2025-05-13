@@ -20,8 +20,7 @@ pip-delete-this-directory.txt
 .cache
 *.pytest_cache/
 
-# Jupyter notebooks
-.ipynb_checkpoints
+
 
 # VS Code settings
 .vscode/
