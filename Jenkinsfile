@@ -13,7 +13,7 @@ pipeline {
             }
         }
 
-        stage("Install") {
+        stage('Install Dependencies') {
             steps {
                 script {
                     // Create a virtual environment and install dependencies
@@ -26,12 +26,12 @@ pipeline {
                 }
             }
         }
-        
-        stage("Linting") {
+
+        stage('Linting') {
             steps {
                 script {
-                    echo "This is my Linting Step"
-                    // Example: run a linter like flake8
+                    echo "Running Linting Step"
+                    // Run the linter (e.g., flake8)
                     sh '''
                         source $VENV/bin/activate
                         flake8 .
@@ -40,11 +40,11 @@ pipeline {
             }
         }
 
-        stage("Install Packages") {
+        stage('Install Additional Packages') {
             steps {
                 script {
-                    echo "This is Install Packages Step"
-                    // Example: Installing additional packages, if needed
+                    echo "Installing Additional Packages"
+                    // Example: Install any additional package, if needed
                     sh '''
                         source $VENV/bin/activate
                         pip install some-additional-package
@@ -53,11 +53,11 @@ pipeline {
             }
         }
 
-        stage("Run Application") {
+        stage('Run Application') {
             steps {
                 script {
-                    echo "This is my Run Application Step"
-                    // Example: Run your application here
+                    echo "Running Application"
+                    // Run your application here (e.g., FastAPI app)
                     sh '''
                         source $VENV/bin/activate
                         python app.py
