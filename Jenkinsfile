@@ -6,64 +6,37 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Code') {
+        stage ("Install") {
             steps {
-                // Checkout the code from the repository
-                checkout scm
+                sh '''
+                    python3 -m venv $VENV
+                    . $VENV/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
             }
         }
-
-        stage('Install Dependencies') {
+        stage ("Linting") {
             steps {
                 script {
-                    // Create a virtual environment and install dependencies
-                    sh '''
-                        python3 -m venv $VENV
-                        . $VENV/bin/activate  # Use dot instead of source
-                        pip install --upgrade pip
-                        pip install -r requirements.txt
-                    '''
+                    echo "This is my Linting Step"
+                }
+            }
+        }
+        stage ("Install Packages") {
+            steps {
+                script {
+                    echo "This is Install PAkcges Step"
+                }
+            }
+        }
+        stage ("Run Application") {
+            steps {
+                script {
+                    echo "This is my Run applcaition Step"
                 }
             }
         }
 
-        stage('Linting') {
-            steps {
-                script {
-                    echo "Running Linting Step"
-                    // Run the linter (e.g., flake8)
-                    sh '''
-                        . $VENV/bin/activate  # Use dot instead of source
-                        flake8 .
-                    '''
-                }
-            }
-        }
-
-        stage('Install Additional Packages') {
-            steps {
-                script {
-                    echo "Installing Additional Packages"
-                    // Example: Install any additional package, if needed
-                    sh '''
-                        . $VENV/bin/activate  # Use dot instead of source
-                        pip install some-additional-package
-                    '''
-                }
-            }
-        }
-
-        stage('Run Application') {
-            steps {
-                script {
-                    echo "Running Application"
-                    // Run your application here (e.g., FastAPI app)
-                    sh '''
-                        . $VENV/bin/activate  # Use dot instead of source
-                        python app.py
-                    '''
-                }
-            }
-        }
     }
 }
