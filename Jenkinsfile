@@ -19,7 +19,7 @@ pipeline {
                     // Create a virtual environment and install dependencies
                     sh '''
                         python3 -m venv $VENV
-                        source $VENV/bin/activate
+                        . $VENV/bin/activate  # Use dot instead of source
                         pip install --upgrade pip
                         pip install -r requirements.txt
                     '''
@@ -33,7 +33,7 @@ pipeline {
                     echo "Running Linting Step"
                     // Run the linter (e.g., flake8)
                     sh '''
-                        source $VENV/bin/activate
+                        . $VENV/bin/activate  # Use dot instead of source
                         flake8 .
                     '''
                 }
@@ -46,7 +46,7 @@ pipeline {
                     echo "Installing Additional Packages"
                     // Example: Install any additional package, if needed
                     sh '''
-                        source $VENV/bin/activate
+                        . $VENV/bin/activate  # Use dot instead of source
                         pip install some-additional-package
                     '''
                 }
@@ -59,7 +59,7 @@ pipeline {
                     echo "Running Application"
                     // Run your application here (e.g., FastAPI app)
                     sh '''
-                        source $VENV/bin/activate
+                        . $VENV/bin/activate  # Use dot instead of source
                         python app.py
                     '''
                 }
